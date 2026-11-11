@@ -1,1 +1,76 @@
-*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#edf2f7;font-family:Arial,Helvetica,sans-serif;line-height:1.5}.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px max(18px,calc((100% - 1100px)/2));background:#101b2e;border-bottom:1px solid #26364d}.brand{font-weight:900;letter-spacing:2px;font-size:21px}.brand span{color:#50d6c5}.subbrand,.muted,.hint{color:#a9b8cc;font-size:13px}.status{font-size:12px;color:#c5d2e2;display:flex;align-items:center;gap:8px}.status i{width:9px;height:9px;border-radius:50%;background:#e6a23c}.container{max-width:1100px;margin:24px auto;padding:0 16px}.panel{background:#121f33;border:1px solid #263a55;border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 8px 25px #0002}h1,h2{margin:0 0 8px}h1{font-size:22px}h2{font-size:18px}.camera-options,.controls,.row,.section-heading{display:flex;gap:10px;align-items:center}.camera-options{margin-top:16px;flex-wrap:wrap}.section-heading{justify-content:space-between}.row>*{flex:1;min-width:0}button,.file-button{border:0;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer;font-size:14px}.primary{background:#22b8a8;color:#06211f}.secondary{background:#263a55;color:#f0f5fb}.small{padding:10px 14px}.full{width:100%;margin-top:10px}.file-button{display:inline-block;background:#263a55;color:#f0f5fb;margin:8px 0;cursor:pointer}.file-button input{display:none}button:disabled{opacity:.45;cursor:not-allowed}input,select{width:100%;padding:11px;border-radius:9px;border:1px solid #3b506d;background:#0c1728;color:#fff;margin:6px 0 12px}label{display:block;font-size:13px;color:#cbd7e6}.esp-controls{margin-top:16px}.hidden{display:none}.hint{font-size:12px;margin-top:4px}.pill{background:#243750;border-radius:20px;padding:5px 10px;font-size:12px;color:#cbd7e6}.camera-stage{position:relative;background:#050a12;border-radius:12px;overflow:hidden;min-height:240px;aspect-ratio:16/9;margin-top:14px}.camera-stage video,.camera-stage img{position:absolute;width:100%;height:100%;object-fit:contain;display:none}.camera-stage canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.camera-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8ea2bb;gap:5px}.camera-placeholder span{font-size:38px}.camera-placeholder small{font-size:12px}.controls{flex-wrap:wrap;margin-top:12px}.warning{color:#f3c77a;font-size:12px;margin-bottom:0}.grid{display:grid;gap:18px}.two{grid-template-columns:1fr 1fr}.library-list,.results{display:grid;gap:8px;margin-top:10px}.item{display:flex;align-items:center;gap:10px;padding:8px;background:#0c1728;border-radius:9px;font-size:13px}.item img{width:46px;height:46px;object-fit:cover;border-radius:6px}.item button{margin-left:auto;padding:6px 9px;font-size:11px}.empty{color:#8fa2b9;font-size:13px}.steps{padding-left:20px;color:#c7d4e4;font-size:14px}.steps li{margin:7px 0}footer{text-align:center;color:#71849e;font-size:12px;padding:10px 16px 28px}@media(max-width:700px){.two{grid-template-columns:1fr}.topbar{padding:14px 16px}.status{max-width:115px}.camera-stage{min-height:210px}.row{flex-direction:column;align-items:stretch;gap:0}}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #0b1220;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background: #14243a;
+    padding: 18px;
+    text-align: center;
+}
+
+header h2 {
+    color: #32dbc1;
+}
+
+.panel {
+    background: #16263c;
+    margin: 15px;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+button {
+    background: #20b9a5;
+    border: none;
+    padding: 13px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+#espControls {
+    display: block;
+    margin-top: 15px;
+}
+
+#cameraBox {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: black;
+    position: relative;
+    overflow: hidden;
+}
+
+video, #espImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    display: none;
+}
+
+canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#results {
+    color: #32dbc1;
+}
