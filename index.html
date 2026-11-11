@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>VISIONMATE AI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div><div class="brand">VISIONMATE <span>AI</span></div><div class="subbrand">Camera-based recognition assistant</div></div>
+    <div class="status"><i id="statusDot"></i><span id="statusText">AI model not loaded</span></div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h1>Choose your camera</h1>
+      <p class="muted">Select one video source. Phone camera requires browser permission and HTTPS.</p>
+      <div class="camera-options">
+        <button class="primary" id="phoneBtn">📱 Use phone camera</button>
+        <button class="secondary" id="espBtn">📷 Use ESP32-CAM</button>
+      </div>
+      <div id="espControls" class="esp-controls hidden">
+        <label for="espUrl">ESP32-CAM stream URL</label>
+        <div class="row"><input id="espUrl" type="url" placeholder="http://192.168.1.100:81/stream"><button id="connectEsp" class="primary small">Connect</button></div>
+        <p class="hint">Enter the stream URL shown by your ESP32-CAM firmware. The phone and ESP32-CAM usually need to be on the same Wi-Fi network. Some ESP32 streams may be blocked by browser security/CORS settings.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><h2>Live camera</h2><p class="muted">Object detection runs in your browser when the model is available.</p></div><span class="pill" id="cameraStatus">Camera off</span></div>
+      <div class="camera-stage" id="cameraStage">
+        <video id="video" autoplay muted playsinline></video>
+        <img id="espImage" alt="ESP32-CAM stream">
+        <canvas id="overlay"></canvas>
+        <div class="camera-placeholder" id="cameraPlaceholder"><span>📷</span><b>Camera preview</b><small>Choose Phone Camera or ESP32-CAM above</small></div>
+      </div>
+      <div class="controls">
+        <button id="stopBtn" class="secondary" disabled>Stop camera</button>
+        <button id="detectBtn" class="primary" disabled>Start obstacle detection</button>
+        <button id="voiceBtn" class="secondary">🔊 Voice: ON</button>
+      </div>
+      <p class="warning">Safety note: this is an experimental aid, not a certified mobility or safety device. Camera-only distance estimates can be inaccurate. Do not rely on it to avoid obstacles.</p>
+    </section>
+
+    <section class="grid two">
+      <section class="panel">
+        <h2>Obstacle library</h2>
+        <p class="muted">Add reference pictures and the name you want associated with them. Data stays in this browser on this device.</p>
+        <label class="file-button">＋ Add obstacle pictures<input id="obstacleFiles" type="file" accept="image/*" multiple></label>
+        <div id="obstacleList" class="library-list"><p class="empty">No obstacle references added yet.</p></div>
+      </section>
+      <section class="panel">
+        <h2>Detection results</h2>
+        <div id="results" class="results"><p class="empty">No objects detected yet.</p></div>
+      </section>
+    </section>
+
+    <section class="grid two">
+      <section class="panel">
+        <h2>📦 Product scanner</h2>
+        <p class="muted">Save a product image with details you provide. Later, capture a product photo and compare it manually against your saved references.</p>
+        <label>Product name<input id="productName" placeholder="e.g. Packaged milk"></label>
+        <div class="row">
+          <label>Manufacturing date<input id="productMfg" placeholder="DD/MM/YYYY"></label>
+          <label>Expiry / best-before date<input id="productExp" placeholder="DD/MM/YYYY"></label>
+        </div>
+        <label class="file-button">＋ Save product reference<input id="productFile" type="file" accept="image/*"></label>
+        <div id="productList" class="library-list"><p class="empty">No product references saved.</p></div>
+        <button id="captureProduct" class="secondary full" disabled>Capture product photo</button>
+        <p id="productMessage" class="hint">Product matching and date reading are not automated in this starter version. The app will not guess dates.</p>
+      </section>
+      <section class="panel">
+        <h2>💵 Currency library</h2>
+        <p class="muted">Save your own reference images and denomination. Currency identification is not automated in this starter version.</p>
+        <label>Denomination (₹)<select id="currencyValue"><option>10</option><option>20</option><option>50</option><option>100</option><option>200</option><option>500</option></select></label>
+        <label class="file-button">＋ Save currency reference<input id="currencyFile" type="file" accept="image/*"></label>
+        <div id="currencyList" class="library-list"><p class="empty">No currency references saved.</p></div>
+        <button id="captureCurrency" class="secondary full" disabled>Capture currency photo</button>
+        <p id="currencyMessage" class="hint">A saved picture is a reference only; it does not yet verify authenticity or value.</p>
+      </section>
+    </section>
+
+    <section class="panel">
+      <h2>How to publish with GitHub Pages</h2>
+      <ol class="steps">
+        <li>Create a new public repository on GitHub, for example <b>visionmate-ai</b>.</li>
+        <li>Extract this ZIP and upload all files and folders to the repository's main branch.</li>
+        <li>Open <b>Settings → Pages</b>.</li>
+        <li>Under Build and deployment, choose <b>Deploy from a branch</b>, branch <b>main</b>, folder <b>/(root)</b>, then Save.</li>
+        <li>Open the published GitHub Pages link. Allow camera permission when prompted.</li>
+      </ol>
+    </section>
+  </main>
+  <footer>VISIONMATE AI · Experimental browser prototype</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
